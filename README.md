@@ -21,4 +21,5 @@ npm run lint
 ```
 
 ### Customize configuration
+Установка из w40k-fb0-s2
 See [Configuration Reference](https://cli.vuejs.org/config/).
