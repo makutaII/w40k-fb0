@@ -1,4 +1,11 @@
-# w40k-fb0-s2
+# Project w40k-fb0-s2
+
+### Site links
+https://wh40000.netlify.app/
+
+https://wh40000.web.app/
+
+https://wh40000.firebaseapp.com/
 
 ## Project setup
 ```
@@ -27,9 +34,6 @@ firebase deploy --only hosting
 ```
 
 ### netlify deploy 
-```
+
 https://app.netlify.com/sites/wh40000/deploys
-```
 
-
-https://wh40000.netlify.app/
