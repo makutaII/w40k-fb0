@@ -21,4 +21,4 @@ npm run lint
 ```
 
 ### Customize configuration
-branch main
+branch master
