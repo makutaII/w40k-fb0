@@ -4,7 +4,7 @@
 
     <h4>проект есть на:</h4>
     <a href="https://github.com/makutaII/w40k-fb0"><h4> гитхаб (приват)</h4></a>
-    <a href=""><h4> гитхаб (сайт)</h4></a>
+    <a href=""><h4> гитхаб (сайт). Нет</h4></a>
     <a href="    https://console.firebase.google.com/u/1/project/wh40k-s2/overview
 "><h4>firebase console</h4></a>
         <a href="https://wh40000.web.app/"><h4>firebase</h4></a>
