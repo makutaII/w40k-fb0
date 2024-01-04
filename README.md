@@ -20,6 +20,13 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-branch master
-private repo
+### Firebase deploy 
+```
+firebase login
+firebase deploy --only hosting
+```
+
+### netlify deploy 
+```
+https://app.netlify.com/sites/wh40000/deploys
+```
