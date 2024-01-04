@@ -22,3 +22,4 @@ npm run lint
 
 ### Customize configuration
 branch master
+private repo
