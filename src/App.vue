@@ -99,22 +99,23 @@ export default {
     drawer: null,
 
 
-    // items: [
-    //   { title: 'Главная', icon: 'mdi-home-city',to:'/' },
-    //   { title: 'Характеристики', icon: 'mdi-clock', to: '' },
-    //   { title: 'Умения', icon: 'mdi-account', to: '' },            
-    //   { title: 'Специализации', icon: 'mdi-flag', to: '' },
-    //   { title: 'Оружие', icon: 'mdi-view-dashboard', to: '' },
-    //   { title: 'О проекте', icon: 'mdi-format-list-checks', to: '/About' },
-    // ],
     items: [
-      { title: 'Главная', icon: '',to:'/' },
-      { title: 'Характеристики', icon: '', to: '' },
-      { title: 'Умения', icon: '', to: '' },            
-      { title: 'Специализации', icon: '', to: '' },
-      { title: 'Оружие', icon: '', to: '' },
-      { title: 'О проекте', icon: '', to: '/About' },
+      { title: 'Главная', icon: 'mdi-home-city',to:'/' },
+      { title: 'Характеристики', icon: 'mdi-clock', to: '' },
+      { title: 'Умения', icon: 'mdi-account', to: '' },            
+      { title: 'Специализации', icon: 'mdi-flag', to: '' },
+      { title: 'Оружие', icon: 'mdi-view-dashboard', to: '' },
+      { title: 'О проекте', icon: 'mdi-format-list-checks', to: '/About' },
     ],
+    // items: [
+    //   { title: 'Главная', icon: '',to:'/' },
+    //   { title: 'Характеристики', icon: '', to: '' },
+    //   { title: 'Умения', icon: '', to: '' },
+    //   { title: 'Специализации', icon: '', to: '' },
+    //   { title: 'Оружие', icon: '', to: '' },
+    //   { title: 'О проекте', icon: '', to: '/About' },
+    // ],
+    
     menuitems: [
       { title: 'Click Me' },
       { title: 'Click Me' },
