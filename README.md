@@ -30,3 +30,6 @@ firebase deploy --only hosting
 ```
 https://app.netlify.com/sites/wh40000/deploys
 ```
+
+
+https://wh40000.netlify.app/
