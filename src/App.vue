@@ -1,6 +1,8 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Восстановленный Vue.js "/>
+  <h3>текст после лого но перед компонетом хелловорлд</h3>
+  <h4>ниже вывод из компонента хелло ворлд</h4>
+  <HelloWorld msg="Запущен Vue.js "/>
 </template>
 
 <script>

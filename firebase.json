@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "wh40000",
     "public": "dist",
     "ignore": [
       "firebase.json",
