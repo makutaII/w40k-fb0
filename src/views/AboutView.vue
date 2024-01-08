@@ -2,15 +2,11 @@
     <v-container>
       <v-row class="text-center">
         <v-col cols="12">
-<v-img
-            :src="require('../img/IM-Logo-Banner.png')"
-            class="my-3"
-            contain
-            height="150"
-          />
-  <div class="about pa-6 ma-1" >
-    <h1>This is an about page</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur
+
+   <div class="about pa-6 ma-1" >
+      <h1>++This is an about page</h1>
+
+      <p>Lorem ipsum dolor sit amet, consectetur
        adipisicing elit. Officiis distinctio quasi
         sunt, eos earum consequuntur cupiditate, 
         illum omnis corrupti, exercitationem suscipit
@@ -64,3 +60,5 @@
       </v-row>
     </v-container>
 </template>
+
+
