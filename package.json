@@ -3,11 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "buildnuxt": "nuxt build",
+    "build": "prisma generate && <actual-build-command>",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstallnuxt": "nuxt prepare",
+    "postinstall": "prisma generate"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",

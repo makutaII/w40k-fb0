@@ -59,9 +59,10 @@
 
 
 
-// const talentsD = ref(null)
-// talentsD.value = await getTalents()
-// async function getTalents() { return await $fetch('/api/w_Talent') }
+//рабочий вариант для локалки
+const talentsD = ref(null)
+talentsD.value = await getTalents()
+async function getTalents() { return await $fetch('/api/w_Talent') }
 
 
 //----  другой шаблон страницы
@@ -71,11 +72,11 @@
 //----------
 
 //----------- данные из примера
-const { data: talentsD } =
-    // await useFetch('../db/talents.json', { // чтение из файла из паблик-папки
-    await useFetch('https://fakestoreapi.com/products', {
+// const { data: talentsD } =
+//     // await useFetch('../db/talents.json', { // чтение из файла из паблик-папки
+//     await useFetch('https://fakestoreapi.com/products', {
 
-    })
+//     })
 // ------------------------------
 
 //import { ref } from 'vue'
