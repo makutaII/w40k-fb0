@@ -1,4 +1,4 @@
-# Project w40k-fb0-s2
+# Project w40k-fb0
 
 ### Site links
 https://wh40000.netlify.app/
