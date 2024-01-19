@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@netlify/planetscale": "^1.1.0",
+    "@planetscale/database": "^1.14.0",
     "@prisma/client": "^5.8.1"
   },
   "prisma": {
