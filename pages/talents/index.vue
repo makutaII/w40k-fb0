@@ -60,10 +60,10 @@ const talentsD = ref(null)
 talentsD.value = await getTalents() 
 
 
-console.log('talents= ', talentsD)
+//console.log('talents= ', talentsD)
 
 async function getTalents() {
-    return await $fetch('/api/w_Talent') 
+    return $fetch('/api/w_Talent') ///await
     
 }
 
