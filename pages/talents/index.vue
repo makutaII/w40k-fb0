@@ -56,25 +56,12 @@
 
 //================
 //получаем данные
-try {
-    const talentsD = await $fetch('/api/w_Talent')
-    if (talentsD.ok) {
-        console.log('Promise resolved and HTTP status is successful');
-        // ...do something with the response
-    } else {
-        console.error('Promise resolved but HTTP status failed');
-    }
-} catch {
-    console.error('Promise rejected');
-}
 
 
 
-
-// talentsD.value = await getTalents() 
-// async function getTalents() {
-//     return $fetch('/api/w_Talent') ///await
-// }
+// const talentsD = ref(null)
+// talentsD.value = await getTalents()
+// async function getTalents() { return await $fetch('/api/w_Talent') }
 
 
 //----  другой шаблон страницы
@@ -84,11 +71,11 @@ try {
 //----------
 
 //----------- данные из примера
-// const { data: talentsD } =
-//     // await useFetch('../db/talents.json', { // чтение из файла из паблик-папки
-//     await useFetch('https://fakestoreapi.com/products', {
+const { data: talentsD } =
+    // await useFetch('../db/talents.json', { // чтение из файла из паблик-папки
+    await useFetch('https://fakestoreapi.com/products', {
 
-//     })
+    })
 // ------------------------------
 
 //import { ref } from 'vue'
