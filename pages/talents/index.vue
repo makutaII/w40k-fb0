@@ -56,7 +56,17 @@
 
 //================
 //получаем данные
-const talentsD = await $fetch('/api/w_Talent')
+try {
+    const talentsD = await $fetch('/api/w_Talent')
+    if (talentsD.ok) {
+        console.log('Promise resolved and HTTP status is successful');
+        // ...do something with the response
+    } else {
+        console.error('Promise resolved but HTTP status failed');
+    }
+} catch {
+    console.error('Promise rejected');
+}
 
 
 
