@@ -57,12 +57,14 @@
 //================
 //получаем данные
 const talentsD = ref(null)
-talentsD.value = await getTalents()
+//talentsD.value = await getTalents() ошибка на серв
+talentsD.value = getTalents()
 
 console.log('talents= ', talentsD)
 
 async function getTalents() {
-    return $fetch('/api/w_Talent')
+    ///return await $fetch('/api/w_Talent') ошибка на серв
+    return await $fetch('/api/w_Talent')
 }
 
 
