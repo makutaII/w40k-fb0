@@ -56,16 +56,15 @@
 
 //================
 //получаем данные
-const talentsD = ref(null)
-talentsD.value = await getTalents() 
+const talentsD = await $fetch('/api/w_Talent')
 
 
-//console.log('talents= ', talentsD)
 
-async function getTalents() {
-    return $fetch('/api/w_Talent') ///await
-    
-}
+
+// talentsD.value = await getTalents() 
+// async function getTalents() {
+//     return $fetch('/api/w_Talent') ///await
+// }
 
 
 //----  другой шаблон страницы
