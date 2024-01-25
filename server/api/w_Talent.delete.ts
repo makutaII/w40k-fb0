@@ -7,7 +7,7 @@ const body = await readBody(event);
 let tal = null;
 
 if (body.id)
-  tal = await prisma.w_Talent.delete({
+  tal = await prisma.w_talent.delete({
     where: {
       id: body.id,
     }
