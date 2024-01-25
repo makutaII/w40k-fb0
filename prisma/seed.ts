@@ -6,12 +6,12 @@ const prisma = new PrismaClient();
 
 async function main() {
   for (let w_t of w_talents) {
-    await prisma.w_Talent.create({
+    await prisma.w_talent.create({
       data: w_t,
     });
     }
   for (let w_r of w_requirements) {
-    await prisma.w_Requirement.create({
+    await prisma.w_requirement.create({
       data: w_r,
     });
   }    
