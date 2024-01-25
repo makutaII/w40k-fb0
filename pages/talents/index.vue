@@ -24,13 +24,13 @@
                             <p class="mb-5">
                                 {{ talent.description }}
                             </p>
-                            <div v-if="talent.requirements[0]" class="font-weight-bold mt-4">Требования:</div>
+                            <!-- <div v-if="talent.requirements[0]" class="font-weight-bold mt-4">Требования:</div>
 
                             <v-divider class="mb-3"></v-divider>
 
                             <div v-for="(req, i) in talent.requirements">
                                 {{ req.name }}
-                            </div>
+                            </div> -->
 
                         </v-expansion-panel-text>
 
