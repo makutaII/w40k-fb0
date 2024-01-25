@@ -7,7 +7,7 @@ export default defineEventHandler(async(event) => {
   let tal = null
   
   if (body.name)
-    await prisma.w_Talent
+    await prisma.w_talent
       .create({
         data: {
           name: body.name,

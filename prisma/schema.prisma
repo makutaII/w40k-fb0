@@ -11,17 +11,17 @@ datasource db {
   relationMode = "prisma"
 }
 
-model w_Requirement {
+model w_requirement {
   id       Int      @id @default(autoincrement())
   name     String   @db.VarChar(400)
   talentId Int?
-  talent   w_Talent? @relation(fields: [talentId], references: [id])
+  talent   w_talent? @relation(fields: [talentId], references: [id])
   @@index([talentId])
 }
 
-model w_Talent {
+model w_talent {
   id           Int             @id @default(autoincrement())
   name         String?         @db.VarChar(255)
   description  String?         @db.VarChar(1500) 
-  requirements w_Requirement[]
+  requirements w_requirement[]
 }

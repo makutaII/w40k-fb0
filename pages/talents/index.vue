@@ -62,7 +62,7 @@
 //рабочий вариант для локалки
 const talentsD = ref(null)
 talentsD.value = await getTalents()
-async function getTalents() { return await $fetch('/api/w_Talent') }
+async function getTalents() { return await $fetch('/api/w_talent') }
 
 
 //----  другой шаблон страницы
