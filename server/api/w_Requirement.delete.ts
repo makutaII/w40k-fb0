@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   let tal = null;
 
   if (body.id)
-    tal = await prisma.w_Requirement.delete({
+    tal = await prisma.w_requirement.delete({
       where: {
         id: body.id,
       },

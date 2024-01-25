@@ -6,22 +6,23 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
-model w_Requirement {
-  id       Int      @id @default(autoincrement())
-  name     String   @db.VarChar(400)
+model w_requirement {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(400)
   talent_id Int?
-  talent   w_talent? @relation(fields: [talent_id], references: [id])
+  talent    w_talent? @relation(fields: [talent_id], references: [id])
+
   @@index([talent_id])
 }
 
 model w_talent {
   id           Int             @id @default(autoincrement())
   name         String?         @db.VarChar(255)
-  description  String?         @db.VarChar(1500) 
-  requirements w_Requirement[]
+  description  String?         @db.VarChar(1500)
+  requirements w_requirement[]
 }

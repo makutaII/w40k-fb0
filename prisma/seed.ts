@@ -1,5 +1,5 @@
-import { w_talents } from "./w_Talent-with-id";
-import { w_requirements } from "./w_Requirement";
+import { w_talents } from "./w_talent-with-id-seed";
+import { w_requirements } from "./w_requirement-seed";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();

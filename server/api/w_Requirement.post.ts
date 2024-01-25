@@ -7,11 +7,11 @@ export default defineEventHandler(async(event) => {
   let req = null
   
   if (body.name)
-    await prisma.w_Requirement
+    await prisma.w_requirement
       .create({
         data: {
           name: body.name,
-          talentId: body.talentId,
+          talent_id: body.talent_id,
         },
       })
       .then((response) => {

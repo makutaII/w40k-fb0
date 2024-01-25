@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async () => {  
   return await prisma.w_talent.findMany(
-  //  {include: { requirements: true }, }
+    {include: { requirements: true }, }
   );
 });
 
