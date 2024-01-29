@@ -1,4 +1,4 @@
-import { w_talents } from "./w_talent-with-id-seed";
+import { w_talents } from "./w_talent-id-seed";
 import { w_requirements } from "./w_requirement-seed";
 import { PrismaClient } from "@prisma/client";
 
@@ -15,7 +15,7 @@ async function main() {
       data: w_r,
     });
   }    
-}
+ }
 
 main()
   .catch((e) => {
@@ -25,6 +25,10 @@ main()
   .finally(() => {
     prisma.$disconnect();
   });
+
+
+
+
 
 //--- из схемы
 //   model w_Talent {

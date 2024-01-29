@@ -12,8 +12,9 @@
     "postinstall": "prisma generate"
   },
   "devDependencies": {
+    "@nuxtjs/supabase": "^1.1.6",
     "@types/node": "^20.11.5",
-    "nuxt": "^3.9.3",
+    "nuxt": "^3.8.2",
     "prisma": "^5.8.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.0",
