@@ -76,12 +76,13 @@
     <!--?кнопка вызова окна входа до входа. -->
 
     <v-btn
-     class="pl-0"
+      class="pl-0"
       color="primary"
       append-icon="mdi-login"
       variant="outlined"
       @click="dialog = true"
-      ><p class="pl-3 d-none d-lg-block text-none">Войти</p></v-btn>
+      ><p class="pl-3 d-none d-lg-block text-none">Войти</p></v-btn
+    >
   </div>
 
   <!--++ окно входа-->
@@ -108,8 +109,8 @@
       <!--++ форма для ввода пароля и мейла-->
       <v-form @submit.prevent="userLogin">
         <!--// bg-surface-variant -->
-        <v-row>
-          <v-col cols="6" class="mx-4">
+        <v-row align="center" justify="center" class="mx-4">
+          <v-col cols="auto" class="mx-auto">
             <div class="text-medium-emphasis">Логин</div>
             <!--email-->
             <v-text-field
@@ -155,7 +156,7 @@
             <!-- !кнопка submit-->
             <v-btn
               block
-              class="mb-8"
+              class="mb-2"
               color="blue"
               size="large"
               variant="tonal"
@@ -164,28 +165,28 @@
               Вход
             </v-btn>
 
-            <!-- проверка на ошибку при входе -->
-            <span v-if="errorMsg"
-              >Неверные учетные данные для входа / {{ errorMsg }}</span
-            >
           </v-col>
 
-          <!-- Вход с гуглом bg-surface-variant -->
-          <v-col cols="5" class="mr-4"
+          <!--! Вход с гуглом bg-surface-variant -->
+          <v-col class="mr-4 border"
             >Войти с помощью Google аккаунта. Тут пока ничего нет</v-col
           >
-          <!--Ссылка на регистрацию -->
+            <!-- проверка на ошибку при входе -->
+             <v-card-subtitle v-if="errorMsg">Неверные учетные данные для входа / {{ errorMsg }}</v-card-subtitle>
+ 
+          <!--? Ссылка на регистрацию -->
 
-          <v-card-subtitle class="mx-auto"
-            >Еще нет аккаунта?
-            <a
-              class="text-blue text-decoration-none"
-              href="#"
-              rel="noopener noreferrer"
-              target="_blank"
+          <v-row align="center" justify="center" class="ma-2">
+            <v-card-subtitle>Еще нет аккаунта?</v-card-subtitle>
+            <v-btn
+              color="blue"
+              variant="text"
+              class="text-none"
+              @click="dialogReg = true"
             >
-              Создать аккаунт<v-icon icon="mdi-chevron-right"></v-icon> </a
-          ></v-card-subtitle>
+              Создать аккаунт
+            </v-btn>
+          </v-row>
         </v-row>
       </v-form>
       <!--++ форма для входа конец -->
@@ -193,9 +194,6 @@
       <v-card-text>
         <!--* форма из моего теста -->
         <!-- <nuxt-link to="/register">Register</nuxt-link> -->
-        <!-- <p v-if="user.role=== 'authenticate'">тру {{ user.role }}</p> -->
-        <!-- <p v-else>фалсе</p> -->
-        <!--* конец моей формы-->
       </v-card-text>
 
       <v-card-actions class="justify-end">
@@ -203,19 +201,127 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+  <!--! диалог регистрации-->
+  <v-dialog v-model="dialogReg" width="400">
+    <v-card>
+      <v-card-title> Регистрация </v-card-title>
+      <v-card-text>
+        <form @submit.prevent="userRegister">
+          <!--email-->
+          <v-text-field
+            density="compact"
+            placeholder="Email"
+            prepend-inner-icon="mdi-email-outline"
+            variant="outlined"
+            v-model="email"
+            id="email"
+            name="email"
+            type="email"
+          ></v-text-field>
+
+          <!--password-->
+          <v-text-field
+            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visible ? 'text' : 'password'"
+            density="compact"
+            placeholder="Введите пароль"
+            prepend-inner-icon="mdi-lock-outline"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+            id="password"
+            v-model="password"
+            name="password"
+          ></v-text-field>
+
+          <!--подтвердить password-->
+          <v-text-field
+            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visible ? 'text' : 'password'"
+            density="compact"
+            placeholder="Повторите пароль"
+            prepend-inner-icon="mdi-lock-outline"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+            id="confirmPassword"
+            v-model="confirmPassword"
+            name="confirmPassword"
+          ></v-text-field>
+          <!-- !кнопка  регистрации submit-->
+          <v-btn
+            block
+            class="mb-2"
+            color="blue"
+            size="large"
+            variant="tonal"
+            type="submit"
+          >
+            Регистрация
+          </v-btn>
+          <v-card-subtitle v-if="errorMsg">{{ errorMsg }}</v-card-subtitle>
+        </form>
+
+      </v-card-text>
+      <v-card-actions class="justify-end">
+        <v-btn variant="text" @click="dialogReg = false"> Закрыть </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script setup>
 const dialog = ref(false); //для диалога входа
+const dialogReg = ref(false); //для диалога регистрации
+
 const visible = ref(false); // показывать пароль в инпуте
 
 // создаем конст юзера
 const user = useSupabaseUser();
 const email = ref("");
 const password = ref("");
+const confirmPassword = ref("");
 const errorMsg = ref("");
+
 const { auth } = useSupabaseClient();
 
+// Регистрация
+const userRegister = async () => {
+  // проверяем пароль
+  if (password.value !== confirmPassword.value) {
+    errorMsg.value = "Пароли не совпадают!";
+    password.value = "";
+    confirmPassword.value = "";
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 3000);
+    return;
+  }
+  // если пароль норм, то ждем событие сигнап
+  try {
+    const { error } = await auth.signUp({
+      email: email.value,
+      password: password.value,
+      // options: {
+      //   data: {
+      //     status: "s_admin",
+      //     age: 27,
+      //   },
+      // },
+    });
+    email.value = "";
+    password.value = "";
+    confirmPassword.value = "";
+
+    if (error) throw error;
+    dialog.value = false; //закрываем окно, если логин успешный
+    dialogReg.value = false; //закрываем окно, если логин успешный
+  } catch (error) {
+    errorMsg.value = error.message;
+    setTimeout(() => {
+      errorMsg.value = "";
+    }, 3000);
+  }
+};
 //const te = () => {console.log('user.value=', user.value);}
 
 //*функция юзерлогин ожидает от auth метод входа по паролю с папраметрами мейл и пасс
