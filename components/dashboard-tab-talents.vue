@@ -4,7 +4,7 @@
   <v-data-table
     :headers="headers"
     :items="talentsD"
-    :sort-by="[{ key: 'id', order: 'desc' }]"
+    :sort-by="[{ key: 'id', order: 'asc' }]"
     v-model:search="search"
     items-per-page-text="Показывать по"
   >
@@ -53,7 +53,7 @@
               <v-textarea
                 v-model="editedItem.description"
                 label="Описание"
-                maxlength="500"
+                maxlength="800"
                 counter
                 auto-grow
                 rows="2"
