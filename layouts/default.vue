@@ -62,12 +62,11 @@
     </v-navigation-drawer>
 
     <!--* ------------Main ------------------>
-    <v-main class="d-flex align-center justify-center">
+    <v-main class=" d-flex align-center justify-center" >
       <!-- <router-view></router-view> -->
-      <div>
-       
+
         <slot />
-      </div>
+
     </v-main>
   </v-app>
 </template>

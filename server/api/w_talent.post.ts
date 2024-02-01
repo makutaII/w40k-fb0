@@ -12,7 +12,7 @@ export default defineEventHandler(async(event) => {
         data: {
           name: body.name,
           description: body.description,
-          requirements: body.requerments,
+          requirements: body.requirements,
         },
       })
       .then((response) => {

@@ -164,18 +164,18 @@
             >
               Вход
             </v-btn>
-
           </v-col>
 
           <!--! Вход с гуглом bg-surface-variant -->
           <v-col class="mr-4 border"
             >Войти с помощью Google аккаунта. Тут пока ничего нет</v-col
           >
-            <!-- проверка на ошибку при входе -->
-             <v-card-subtitle v-if="errorMsg">Неверные учетные данные для входа / {{ errorMsg }}</v-card-subtitle>
- 
-          <!--? Ссылка на регистрацию -->
+          <!-- проверка на ошибку при входе -->
+          <v-card-subtitle v-if="errorMsg"
+            >Неверные учетные данные для входа / {{ errorMsg }}</v-card-subtitle
+          >
 
+          <!--? Ссылка на регистрацию -->
           <v-row align="center" justify="center" class="ma-2">
             <v-card-subtitle>Еще нет аккаунта?</v-card-subtitle>
             <v-btn
@@ -197,7 +197,8 @@
       </v-card-text>
 
       <v-card-actions class="justify-end">
-        <v-btn variant="text" @click="dialog = false">Закрыть</v-btn>
+        <v-btn variant="text" @click="dialog = false"> Закрыть 
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -260,7 +261,6 @@
           </v-btn>
           <v-card-subtitle v-if="errorMsg">{{ errorMsg }}</v-card-subtitle>
         </form>
-
       </v-card-text>
       <v-card-actions class="justify-end">
         <v-btn variant="text" @click="dialogReg = false"> Закрыть </v-btn>
