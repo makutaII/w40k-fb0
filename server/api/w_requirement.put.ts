@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   
 
-  const req = await prisma.w_Requirement.update({
+  const req = await prisma.w_requirement.update({
     where: {
       id: id,
     },

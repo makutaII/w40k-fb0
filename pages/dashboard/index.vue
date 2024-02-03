@@ -33,14 +33,14 @@ const { auth } = useSupabaseClient();
 const tab = ref(0);
 
 //!получаем данные
-const talentsD = ref(null);
-//const requirementsD =ref(null)
-talentsD.value = await getTalents();
-//requirementsD.value = await getrequirements()
-//console.log(talentsD.value)
-async function getTalents() {
-  return await $fetch("/api/w_talent");
-}
+// const talentsD = ref(null);
+// //const requirementsD =ref(null)
+// talentsD.value = await getTalents();
+// //requirementsD.value = await getrequirements()
+// //console.log(talentsD.value)
+// async function getTalents() {
+//   return await $fetch("/api/w_talent");
+// }
 
 //!если юзер не вошел, то на главную
 watchEffect(() => {

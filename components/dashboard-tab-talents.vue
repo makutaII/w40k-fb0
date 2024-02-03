@@ -1,13 +1,15 @@
 <template>
-  <h4>Требования здесь не редактируются</h4>
   <!--? данные таблицы -->
   <v-data-table
     :headers="headers"
     :items="talentsD"
     :sort-by="[{ key: 'id', order: 'asc' }]"
     v-model:search="search"
-    items-per-page-text="Показывать по"
-  >
+   
+      items-per-page= "-1"
+     
+     >
+     <!-- page-text ="" -->
     <!--++ заголовок?-->
     <template v-slot:top>
       <!--++ диалог - новая запись bg-surface-variant-->
@@ -35,11 +37,10 @@
             </v-col>
           </v-row>
         </template>
-
         <!--++ окно новая\редактирование записи-->
         <v-card>
           <v-card-title>
-           <!-- Редактирование или новая запись в зависимости от editedIndex в formTitle -->
+            <!-- Редактирование или новая запись в зависимости от editedIndex в formTitle -->
             <span class="text-h5">{{ formTitle }}</span>
           </v-card-title>
 
@@ -59,15 +60,70 @@
                 rows="2"
               ></v-textarea>
 
-              <v-textarea
-                v-model="editedItem.requirements"
-                label="Требование"
-                maxlength="200"
-                counter
-                auto-grow
-                rows="1"
-                disabled=""
-              ></v-textarea>
+              <!-- ! редактируем требование -->
+
+              <v-card-text> Требование</v-card-text>
+
+              <div v-for="(req, i) in editedItem.requirements">
+                <v-row>
+                  <v-textarea
+                    v-model="req.name"
+                    :label="'Требование ' + i"
+                    rows="1"
+                  >
+                  </v-textarea>
+
+                  <!--1 вызывает функцию  удалить требование -->
+                  <v-icon
+                    color="red"
+                    size="small"
+                    @click="deleteReqN(i, req.id, editedItem.requirements)"
+                  >
+                    mdi-delete
+                  </v-icon>
+                </v-row>
+              </div>
+              <!-- !---------добавляем требование -->
+              <!-- !---------добавляем требование -->
+              <v-card v-if="editedItem.id" class="">
+                <v-row class="mx-3 mt-3">
+                  <v-col class="pa-1"  cols="auto">
+                    <v-card-text class="pa-0">{{ editedItem.id }}</v-card-text>
+                  </v-col>
+                  <v-textarea
+                    v-model="editedReqItem.name"
+                    label="Описание"
+                    counter
+                    auto-grow
+                    rows="1"
+                  ></v-textarea>
+
+                  <!--* кнопка новое требование-->
+                  <v-icon
+                    color="green"
+                    @click="
+                      addRequirement(
+                        editedReqItem.name,
+                        editedItem.id,
+                        editedItem.requirements
+                      )
+                    "
+                  >
+                    mdi-plus
+                  </v-icon>
+                </v-row>
+               
+                  <v-card-text class="pt-0">Нажмите + справа для фиксации требования в БД</v-card-text>
+              
+              </v-card>
+              <v-card v-else class="pa-2">
+                <v-text
+                  >Добавить требования можно только к уже созданным
+                  талантам</v-text
+                >
+              </v-card>
+
+              <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
             </v-container>
           </v-card-text>
 
@@ -120,7 +176,7 @@
 
     <!-- требования показываем только name -->
     <template v-slot:item.requirements="{ item }">
-      <div v-for="(req, i) in item.requirements">
+      <div class="border-b" v-for="(req, i) in item.requirements">
         {{ req.name }}
       </div>
     </template>
@@ -133,69 +189,19 @@
       <!--1 вызывает функцию  deleteItem(item) , где итем - это запись из talentsD-->
       <v-icon size="small" @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
-    <!--* кнопка обновить когда пусто-->
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize"> Reset </v-btn>
+   <template v-slot:bottom>
+      <div class="text-center pt-2">
+        Всего 
+{{ talentsD.length }}
+      </div>
     </template>
+
   </v-data-table>
 </template>
 
 <script setup>
-// без этого импорта норм
-// import { computed, nextTick, ref, watch } from "vue";
+//? ========================== КОНСТАНТЫ ==================
 
-//========= Функции работы с БД
-const talentsD = ref(null);
-// получаем массив из бд
-talentsD.value = await getTalents();
-
-async function getTalents() {
-  return await $fetch("/api/w_talent");
-}
-
-// удаляем юзера из бд
-async function deleteTalents(id) {
-  return await $fetch("/api/w_talent", {
-    method: "DELETE",
-    body: {
-      id: id,
-    },
-  });
-}
-
-// добавляем юзера в бд
-async function addTalents(newtalent) {
-  let addtal = null
-
-  if (newtalent) addtal = await $fetch("/api/w_talent", {
-    method: "POST",
-    body: {
-      name: newtalent.name,
-      description: newtalent.description,
-      //requirements:newtalent.requirements,
-    },
-  });
-
-  if (addtal) talentsD.value = await getTalents()
-}
-
-// редактируем юзера в бд
-async function editTalents(edtalent) {
-  let edtal = null
-
-  if (edtalent) edtal = await $fetch("/api/w_talent", {
-    method: "PUT",
-    body: {
-      id: edtalent.id,
-      name: edtalent.name,
-      description: edtalent.description,
-    },
-  });
-
-  if (edtal) talentsD.value = await getTalents()
-}
-
-//==================
 const search = ref("");
 const dialog = ref(false);
 const dialogDelete = ref(false);
@@ -212,14 +218,18 @@ const headers = ref([
   { title: "Изменить", key: "actions", sortable: false },
 ]);
 
-// Редактирование
-const desserts = ref([]);
-const editedIndex = ref(-1);
+//++ конст редактирования
+const editedReqIndex = ref(-1);
 const deletedIndex = ref();
+const editedIndex = ref(-1);
 const editedItem = ref({
   name: "",
   description: "",
   requirements: "",
+});
+const editedReqItem = ref({
+  name: "",
+  talent_id: "",
 });
 const defaultItem = ref({
   name: "",
@@ -230,49 +240,121 @@ const formTitle = computed(() => {
   return editedIndex.value === -1 ? "Новая запись" : "Редактирование";
 });
 
-//---------
+//?========= Функции работы с БД==========
+//?=======================================
 
-function initialize() {
-  desserts.value = [
-    {
-      name: "Frozen Yogurt",
-      calories: 159,
-      fat: 6,
-      carbs: 24,
-      protein: 4,
-    },
-  ];
+const talentsD = ref(null);
+//* получаем массив из бд
+talentsD.value = await getTalents();
+
+async function getTalents() {
+  return await $fetch("/api/w_talent");
 }
 
+//* удаляем талант из бд
+async function deleteTalents(id) {
+  return await $fetch("/api/w_talent", {
+    method: "DELETE",
+    body: {
+      id: id,
+    },
+  });
+}
+
+//* добавляем талант в бд
+async function addTalents(newtalent) {
+  let addtal = null;
+
+  if (newtalent)
+    addtal = await $fetch("/api/w_talent", {
+      method: "POST",
+      body: {
+        name: newtalent.name,
+        description: newtalent.description,
+        //requirements:newtalent.requirements,
+      },
+    });
+
+  if (addtal) talentsD.value = await getTalents();
+}
+
+//! добавляем требование в бд
+async function addRequirement(name, tal_id, ediq) {
+  let addtal = null;
+  let ledq = {
+    name: name,
+    talent_id: tal_id,
+  };
+  ediq.push(ledq);
+  addtal = await $fetch("/api/w_requirement", {
+    method: "POST",
+    body: {
+      name: name,
+      talent_id: tal_id,
+    },
+  });
+
+  //if (addtal) talentsD.value = await getTalents();
+}
+//! редактируем требование в бд
+
+async function editRequirement(editreq) {
+  let edreq = null;
+  edreq = await $fetch("/api/w_requirement", {
+    method: "PUT",
+    body: {
+      id: editreq.id,
+      name: editreq.name,
+      talent_id: editreq.talent_id,
+    },
+  });
+
+  //if (addtal) talentsD.value = await getTalents();
+}
+//* редактируем юзера в бд
+async function editTalents(edtalent) {
+  let edtal = null;
+
+  if (edtalent)
+    edtal = await $fetch("/api/w_talent", {
+      method: "PUT",
+      body: {
+        id: edtalent.id,
+        name: edtalent.name,
+        description: edtalent.description,
+      },
+    });
+  if (edtal) talentsD.value = await getTalents();
+}
+
+//++ Функции редактирования
 function editItem(item) {
   editedIndex.value = talentsD.value.indexOf(item);
   editedItem.value = Object.assign({}, item);
   dialog.value = true;
 }
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//* Удаление
 function deleteItem(item) {
   //2 записали индекс(текущий) редактируемой записи в массиве talentsD
-  
   editedIndex.value = talentsD.value.indexOf(item);
 
   // записали индекс(значение id поля) редактируемой записи
   deletedIndex.value = item.id;
 
-  
   // console.log("item.id=", item.id);
   // console.log("deletedIndex.value=", deletedIndex.value);
 
   //2 записали пропсы редактируемой записи (попробовать удалить)
   editedItem.value = Object.assign({}, item);
+
   //3 открываем диалог делете
   dialogDelete.value = true;
 }
 
-//4 подтверждаем делете
+//* 4 подтверждаем делете
 function deleteItemConfirm() {
-  //* Удаляем запись из базы
-
+  // Удаляем запись из базы
   deleteTalents(deletedIndex.value);
 
   // Удаляем запись из массива Talentsd для обновления на экране
@@ -281,8 +363,30 @@ function deleteItemConfirm() {
   //5 вызываем делете
   closeDelete();
 }
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+//* Удаление requirement
+async function deleteReqN(i, id, edis) {
+  edis.splice(i, 1);
+  return await $fetch("/api/w_requirement", {
+    method: "DELETE",
+    body: {
+      id: id,
+    },
+  });
+}
+//* удаляем requirement из бд. Объединил с удалением из массива
+// async function deleteRequirement(id) {
+
+//   return await $fetch("/api/w_requirement", {
+//     method: "DELETE",
+//     body: {
+//       id: id,
+//     },
+//   });
+
+// }
+
+//* закрытие
 function close() {
   dialog.value = false;
   nextTick(() => {
@@ -299,27 +403,32 @@ function closeDelete() {
   });
 }
 
- //================
+//* Сохранение
 function save() {
+  let ee = null;
+
   if (editedIndex.value > -1) {
     Object.assign(talentsD.value[editedIndex.value], editedItem.value);
-    console.log('editItem.value=', editedItem.value);
-    editTalents(editedItem.value);
+    //editTalents(editedItem.value);
+    //!!!!!++++++++++++++++++++!!!!!!!!!!!!!!
+    ee = editedItem.value.requirements;
+
+    for (const element of editedItem.value.requirements) {
+      editRequirement(element);
+    }
   } else {
-     console.log('editedIndex.value=', editedIndex.value);
     talentsD.value.push(editedItem.value);
-    
-     addTalents(editedItem.value);
+    addTalents(editedItem.value);
   }
   close();
 }
+
 watch(dialog, (val) => {
   val || close();
 });
 watch(dialogDelete, (val) => {
   val || closeDelete();
 });
-initialize();
 </script>
 
 <style scoped></style>

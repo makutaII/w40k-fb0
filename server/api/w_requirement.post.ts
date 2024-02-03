@@ -11,7 +11,7 @@ export default defineEventHandler(async(event) => {
       .create({
         data: {
           name: body.name,
-          talent_id: body.talent_id,
+          talent_id: body.talent_id, 
         },
       })
       .then((response) => {

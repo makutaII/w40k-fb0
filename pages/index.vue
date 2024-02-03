@@ -1,4 +1,5 @@
-<template>
+<template>        
+    
     <v-container>
     
         <h1 class = "ma-lg-9">Справочник</h1>
@@ -13,6 +14,7 @@
             corrupti voluptas, quis ullam.</p>
     
     </v-container>
+   
 </template>
 
 <script setup>

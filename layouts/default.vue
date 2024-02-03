@@ -1,4 +1,5 @@
 <template>
+
   <v-app id="inspire">
     <v-app-bar class="pr-3">
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -64,16 +65,19 @@
     <!--* ------------Main ------------------>
     <v-main class=" d-flex align-center justify-center" >
       <!-- <router-view></router-view> -->
-
+   
         <slot />
 
     </v-main>
+    
   </v-app>
+
 </template>
 
 <!--=============================================-->
 
 <script setup>
+
 import { ref } from "vue";
 const drawer = ref(null);
 
