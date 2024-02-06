@@ -40,13 +40,14 @@
       <v-divider></v-divider>
 
       <v-list :lines="false">
-        <v-list-subheader to="/">СПРАВОЧНИК</v-list-subheader>
+        <v-list-subheader>Справочник</v-list-subheader>
 
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
           :value="item"
           :to="item.to"
+          :disabled="item.disabled"
           color="primary"
           rounded="shaped"
         >
@@ -85,12 +86,12 @@ const drawer = ref(null);
 
 //Боковое меню
 const items = [
-  { title: "В начало", icon: "mdi-home", to: "/" },
-  { title: "Таланты", icon: "mdi-clock", to: "/talents" },
-  { title: "Характеристики", icon: "mdi-format-list-checks", to: "" },
-  { title: "Умения", icon: "mdi-account", to: "" },
-  { title: "Специализации", icon: "mdi-flag", to: "" },
-  { title: "Оружие", icon: "mdi-view-dashboard", to: "" },
+  { title: "В начало", icon: "mdi-home", to: "/", disabled: false },
+  { title: "Таланты", icon: "mdi-clock", to: "/talents", disabled: false },
+  { title: "Характеристики", icon: "mdi-format-list-checks", to: "/characteristics", disabled: false },
+  { title: "Умения", icon: "mdi-account", to: "/skills", disabled: false },
+  { title: "Специализации", icon: "mdi-flag", to: "/specializations", disabled: false },
+  { title: "Оружие", icon: "mdi-view-dashboard", to: "", disabled: true },
   { title: "О проекте", icon: "mdi-home-city", to: "/about" },
   { title: "user", icon: "mdi-account", to: "/user" },
     { title: "dash", icon: "mdi-account", to: "/dashboard" },

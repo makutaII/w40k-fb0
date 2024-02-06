@@ -11,6 +11,27 @@ datasource db {
   relationMode = "prisma"
 }
 
+// =======w_article=============
+
+model w_article {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(150)
+  text      String    @db.VarChar(1500)
+  category  String    @db.VarChar(50)
+  author    String    @db.VarChar(50)
+  public    Boolean    @default(false)
+  date      DateTime   @default(now())
+}
+
+// ===w_talent =========
+
+model w_talent {
+  id           Int             @id @default(autoincrement())
+  name         String?         @db.VarChar(255)
+  description  String?         @db.VarChar(1500)
+  requirements w_requirement[]
+}
+
 model w_requirement {
   id        Int       @id @default(autoincrement())
   name      String    @db.VarChar(400)
@@ -20,9 +41,41 @@ model w_requirement {
   @@index([talent_id])
 }
 
-model w_talent {
+//=======w_skill======================
+
+model  w_characteristic {
+  id           Int             @id @default(autoincrement())
+  name         String         @db.VarChar(255)
+  description  String?         @db.VarChar(1500)
+  skills w_skill[]
+
+  
+}
+model w_skill {
   id           Int             @id @default(autoincrement())
   name         String?         @db.VarChar(255)
   description  String?         @db.VarChar(1500)
-  requirements w_requirement[]
+  char_id      Int?
+  char     w_characteristic? @relation(fields: [char_id], references: [id])
+  specs w_specialization[]
+
+ @@index([char_id])
 }
+
+
+model  w_specialization {
+  id           Int             @id @default(autoincrement())
+  name         String         @db.VarChar(255)
+  description  String?         @db.VarChar(1500)
+  skill_id     Int?
+  skills     w_skill? @relation(fields: [skill_id], references: [id])
+
+  @@index([skill_id])
+}
+
+
+
+
+
+
+
