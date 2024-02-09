@@ -17,10 +17,12 @@
             <v-expansion-panel-title class="pa-2">
               <v-col cols="9" class="text-capitalize" style="min-width: 210px">
                 {{ skill.id }}. {{ skill.name }}
-                <div>{{ skill.char_id }} {{ skill.char.name }}</div>
-                <!-- <div>   {{skill.specs[0].name}} </div>  -->
+<div>
+                <v-chip class="mt-2"  color="secondary" size="small" prepend-icon="mdi-brightness-7">
+                  {{ skill.char.name }}
+                </v-chip>
+     </div>           
               </v-col>
-              <!--<div>{{key}}{{ charname[key] }}</div>-->
 
               <v-divider
                 :thickness="20"
@@ -37,12 +39,9 @@
                 Специализации:
               </div>
 
-              <div
-                class="text-subtitle-2"
-                v-for="(spec, i) in skill.specs"
-              >
+              <div class="text-subtitle-2" v-for="(spec, i) in skill.specs">
                 {{ spec.name }}
-              </div> 
+              </div>
 
               <v-divider class="mb-3"></v-divider>
               <p class="mb-5">
