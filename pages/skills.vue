@@ -9,19 +9,33 @@
       </div></v-row
     >
     <v-row>
-      <v-col cols="9" class="text-capitalize" style="min-width: 210px"> </v-col>
+      <v-col cols="11" > </v-col>
       <v-col v-for="(skill, i) in skillsD" :key="i">
         <v-expansion-panels>
           <v-expansion-panel>
             <!-- class="bg-surface-variant" -->
             <v-expansion-panel-title class="pa-2">
-              <v-col cols="9" class="text-capitalize" style="min-width: 210px">
+              <v-col  style="min-width: 250px">
                 {{ skill.id }}. {{ skill.name }}
-<div>
-                <v-chip class="mt-2"  color="secondary" size="small" prepend-icon="mdi-brightness-7">
-                  {{ skill.char.name }}
-                </v-chip>
-     </div>           
+                <div>
+                  <v-chip
+                    @click=""
+                    class="mt-2"
+                    color="secondary"
+                    size="small"
+                    prepend-icon="mdi-brightness-7"
+                  >
+                    <v-tooltip
+                      activator="parent"
+                      location="bottom"
+                      max-width="400"
+                    >
+                      <p>{{ skill.char.name }}</p>
+                      {{ skill.char.description }}</v-tooltip
+                    >
+                    {{ skill.char.name }}
+                  </v-chip>
+                </div>
               </v-col>
 
               <v-divider

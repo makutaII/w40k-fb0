@@ -15,6 +15,7 @@ export default defineEventHandler(async () => {
       char: {
         select: {
           name: true,
+          description:true,
         },
       },
       specs: true,
