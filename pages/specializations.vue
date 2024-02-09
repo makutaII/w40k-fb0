@@ -63,6 +63,6 @@ async function getSpecialization() {
 export default {
   data: () => ({}),
 };
-</script>
+</script> 
 
 <style scoped></style>

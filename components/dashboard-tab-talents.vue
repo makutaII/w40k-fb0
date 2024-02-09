@@ -271,7 +271,7 @@ async function addTalents(newtalent) {
       body: {
         name: newtalent.name,
         description: newtalent.description,
-        //requirements:newtalent.requirements,
+        //requirements:newtalent.requirements, 
       },
     });
 

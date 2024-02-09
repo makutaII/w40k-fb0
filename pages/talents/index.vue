@@ -37,7 +37,7 @@
               </div>
 
               <div
-                class="text-subtitle-2"
+                class="text-subtitle-2" 
                 v-for="(req, i) in talent.requirements"
               >
                 {{ req.name }}
@@ -77,7 +77,7 @@ async function getTalents() {
 }
 
 //----  другой шаблон страницы
-// definePageMeta({
+// definePageMeta({ 
 //     layout: 'prods'
 // })
 //----------

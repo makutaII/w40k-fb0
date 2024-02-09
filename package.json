@@ -15,7 +15,7 @@
     "@nuxtjs/supabase": "^1.1.6",
     "@types/node": "^20.11.5",
     "nuxt": "^3.8.2",
-    "prisma": "^5.8.1",
+    "prisma": "^5.9.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
@@ -28,7 +28,7 @@
     "@mdi/font": "^7.4.47",
     "@netlify/planetscale": "^1.1.0",
     "@planetscale/database": "^1.14.0",
-    "@prisma/client": "^5.8.1"
+    "@prisma/client": "^5.9.1"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
