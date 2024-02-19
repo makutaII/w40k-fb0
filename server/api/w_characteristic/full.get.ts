@@ -3,24 +3,24 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async () => {
 
-  return await prisma.w_skill.findMany({
+  return await prisma.w_characteristic.findMany({
     // новая фишка призмы для зависимых таблиц
     relationLoadStrategy: "query",
 
     select: {
-      id:true,
+      id: true,
       name: true,
       description: true,
-      char_id:true,
-      
-      char: {
+      skills: {
         select: {
+          id: true,
           name: true,
-          description:true,
+          description: true,
+          specs: true,
         },
       },
-      specs: true,
     },
-    
+
+
   });
 });

@@ -1,24 +1,31 @@
-<template>        
-    
-    <v-container>
-    
-        <h1 class = "ma-lg-9">Справочник</h1>
-    
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque placeat quis dolor. Dolorem at illum ducimus
-            corrupti voluptas, quis ullam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque placeat quis dolor.
-            Dolorem at illum ducimus
-            corrupti voluptas, quis ullam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque placeat quis dolor.
-            Dolorem at illum ducimus
-            corrupti voluptas, quis ullam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque placeat quis dolor. Dolorem at illum ducimus
-            corrupti voluptas, quis ullam.</p>
-    
-    </v-container>
-   
+<template>
+  <v-container>
+    <h1 class="ma-lg-9">Справочник</h1>
+
+    <v-card class="ma-8 pa-10">
+    <ul>Обновление:
+      <li>Добавлен индикатор загрузки страниц</li>
+      <li>
+        Другая страница характеристик.
+        <p>Избыточный функционал. Как лучше? :</p>
+        <p>При нажатии на стрелочку под умением выпадает инфа(удобно).</p>
+        <p>
+          Если нажать на карточку умений, то открывается отдельная страника с
+          инфой умения(Есть ссылка на умение - полезно в будущем, а также немного быстрее открываются страницы).
+        </p>
+        <p>
+            Цвета, иконки, размещение элементов на странице черновое, будет изменяться позднее. 
+            Варианты приветствуются.
+        </p>
+
+      </li>
+      <li>Страница Умения устарела, но пока осталась как вариант оформления </li>
+      <li>Некоторые оптимизации кода</li>
+    </ul>
+    </v-card>
+  </v-container>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 
 <style scoped></style>

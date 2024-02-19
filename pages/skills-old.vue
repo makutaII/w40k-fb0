@@ -1,21 +1,20 @@
 <template>
   <v-container>
-    <h1 class="ma-lg-9">Умения</h1>
+    <h1 class="ma-lg-9">Умения устаревшая страница</h1>
     <v-row>
       <div>
-        Умения показывают подготовку и практический опыт персонажа (например,
-        лазать, стрелять или знать то, что знать не положено). Каждое умение
-        связано с характеристикой, указанной в его описании.
+        Просто начальный вариант без переходов. Будет убрано
       </div></v-row
     >
+    <!--!------Панели------------------>
     <v-row>
-      <v-col cols="11" > </v-col>
+      <!-- <v-col cols="11" > </v-col> -->
       <v-col v-for="(skill, i) in skillsD" :key="i">
         <v-expansion-panels>
           <v-expansion-panel>
             <!-- class="bg-surface-variant" -->
             <v-expansion-panel-title class="pa-2">
-              <v-col  style="min-width: 250px">
+              
                 {{ skill.id }}. {{ skill.name }}
                 <div>
                   <v-chip
@@ -35,8 +34,8 @@
                     >
                     {{ skill.char.name }}
                   </v-chip>
-                </div>
-              </v-col>
+              
+              </div>
 
               <v-divider
                 :thickness="20"
@@ -72,6 +71,21 @@
 
 <script setup>
 //================
+const show = ref(false);
+
+const curr = {
+  name: null,
+};
+
+function showdiv(sk) {
+  show.value = false;
+  show.value = true;
+  curr.name = sk.name;
+  const l = sk;
+  console.log("l= ", curr);
+  return l;
+}
+
 //получаем данные
 
 const skillsD = ref(null);
@@ -79,7 +93,7 @@ skillsD.value = await getSkills();
 
 async function getSkills() {
   let s2 = await $fetch("/api/w_skill/char_spec", {});
-  console.log("s2=", s2);
+  //console.log("s2=", s2);
   return s2;
 }
 

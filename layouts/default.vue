@@ -48,6 +48,7 @@
           :value="item"
           :to="item.to"
           :disabled="item.disabled"
+          :base-color="item.color"
           color="primary"
           rounded="shaped"
         >
@@ -65,6 +66,7 @@
 
     <!--* ------------Main ------------------>
     <v-main class=" d-flex align-center justify-center" >
+      <NuxtLoadingIndicator />
       <!-- <router-view></router-view> -->
    
         <slot />
@@ -87,10 +89,10 @@ const drawer = ref(null);
 //Боковое меню
 const items = [
   { title: "В начало", icon: "mdi-home", to: "/", disabled: false },
-  { title: "Таланты", icon: "mdi-clock", to: "/talents", disabled: false },
-  { title: "Характеристики", icon: "mdi-format-list-checks", to: "/characteristics", disabled: false },
-  { title: "Умения", icon: "mdi-account", to: "/skills", disabled: false },
-  { title: "Специализации", icon: "mdi-flag", to: "/specializations", disabled: false },
+  { title: "Таланты", icon: "mdi-clock", to: "/talents", disabled: false, color:"secondary" },
+  { title: "Характеристики", icon: "mdi-format-list-checks", to: "/characteristics", disabled: false, color:"secondary" },
+  { title: "Умения устар.", icon: "mdi-account", to: "/skills-old", disabled: false },
+  //{ title: "Специализации", icon: "mdi-flag", to: "/specializations", disabled: false },
   { title: "Оружие", icon: "mdi-view-dashboard", to: "", disabled: true },
   { title: "О проекте", icon: "mdi-home-city", to: "/about" },
   { title: "user", icon: "mdi-account", to: "/user" },

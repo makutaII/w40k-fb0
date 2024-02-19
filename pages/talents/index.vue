@@ -53,13 +53,13 @@
     </v-row>
 
     <!-- ================================= -->
-    <!-- <h3  class = "ma-lg-9">Control</h3>
+    <h3  class = "ma-lg-9">Control</h3>
         <div class="mb-16">
-            <div v-for="t in talentsD">
-                <NuxtLink :to="`/talents/${t.id}`">{{ t.title }}</NuxtLink>
-            </div>
+            <!-- <div v-for="t in talentsD">
+                <NuxtLink :to="`/talents/${translit(t.name)}`">{{ translit(t.name) }} : {{ t.id }} {{ t.name }}</NuxtLink>
+            </div> -->
 
-        </div> -->
+        </div> 
   </v-container>
 </template>
 <!-- ================================= -->
@@ -75,6 +75,22 @@ talentsD.value = await getTalents();
 async function getTalents() {
   return await $fetch("/api/w_talent");
 }
+
+
+// function translit(t) {
+// 		const Chars = {
+//       ' ':'_','а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'YO', 'Ж': 'ZH', 'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'H', 'Ц': 'C', 'Ч': 'CH', 'Ш': 'SH', 'Щ': 'SHCH', 'Ъ': '', 'Ы': 'Y', 'Ь': '', 'Э': 'E', 'Ю': 'YU', 'Я': 'YA'
+// 		}
+		
+// 		for (var i in Chars) { t = t.replace(new RegExp(i, 'g'), Chars[i]); }
+// 		return t;
+// 	};
+
+//console.log(st);
+
+
+
+
 
 //----  другой шаблон страницы
 // definePageMeta({ 
